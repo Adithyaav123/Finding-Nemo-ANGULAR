@@ -1,0 +1,24 @@
+<h1 align="center" style="color: magenta">WELCOME TO NEMO GAME</h1>
+<table>
+  <tr *ngFor="let row of [0, 1]">
+    <td *ngFor="let circle of circles.slice(row * 5, (row + 1) * 5)">
+      <div
+        class="circle"
+        [class.nemo]="circle.isNemo"
+        [class.clicked]="circle.isClicked"
+        (click)="circleClickHandler(circle)"
+        [style.background-image]="circle.isClicked ? (circle.isNemo ? 'url(assets/nemo.png)' : 'none') : 'none'"
+        [style.background-color]="circle.isClicked && !circle.isNemo ? 'red' : 'blue'"
+      ></div>
+    </td>
+  </tr>
+</table>
+
+<img
+  class="nemo-image"
+  src="assets/nemo.png"
+  alt="Nemo Image"
+  [style.display]="nemoFound ? 'block' : 'none'"
+/>
+<div id="message">{{ message }}</div>
+<button (click)="resetGame()">Reset Game</button>
